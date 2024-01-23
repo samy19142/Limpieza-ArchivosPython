@@ -2,6 +2,7 @@ import re
 import re
 import tkinter as tk
 from tkinter import filedialog
+from tkinter import messagebox as MessageBox
 
 # Función para limpiar y extraer la información
 def procesar_linea(linea):
@@ -16,9 +17,10 @@ def procesar_linea(linea):
         return None
 
 def procesar_archivo(archivo_entrada, archivo_salida):
-    cabeceras = ['Tipo', 'Cuenta', 'Nombre Cuenta', 'Tipo OP', 'Docto', 'Autoriz', 'Valor', 'Hora']
+    cabeceras = ['Tipo Operacion', 'Transaccion', 'Valor', 'Cajero', 'Hora', 'Fran', 'No Tarjeta', 'Cta Debito','Autorizacion','Fecha']
     # Procesar el archivo
     with open(archivo_entrada, 'r', encoding='utf-8') as entrada, open(archivo_salida, 'w', encoding='utf-8') as salida:
+        salida.write('|'.join(cabeceras) + '\n')
         for linea in entrada:
             # Procesar cada línea del archivo
             resultado_linea = procesar_linea(linea)
@@ -26,7 +28,8 @@ def procesar_archivo(archivo_entrada, archivo_salida):
                 # Escribir el resultado en el nuevo archivo
                 salida.write(resultado_linea + '\n')
 
-    print(f"Proceso completado. Resultados guardados en '{archivo_salida}'.")
+    print(f"******Proceso completado. Resultados guardados en '{archivo_salida}'.*******")
+    MessageBox.showinfo("Limpieza","Proceso Finalizado!")
 
 
 def seleccionar_archivo():
