@@ -7,7 +7,7 @@ from tkinter import messagebox as MessageBox
 # Función para limpiar y extraer la información
 def procesar_linea(linea):
     # Utiliza expresiones regulares para extraer la información deseada
-    match = re.match(r'^(-|\s)?(\d+)\s+([\w+]{2})\s+([\w+]{2})\s+([\w+]{4})\s+([\d+]{4})\s+([\w+]{3})\s+([\w+]{10})\s+([\w+]{2})\s+(\w+)\s+([\d,.]+)\s+(\d+(?::\d{1,2}(?::\d{1,2})?)?)$', linea)
+    match = re.match(r'^(-|\s)?(\d+)\s+([\w+]{2,3})\s+([\w+]{2})\s+([\w+]{4})\s+([\d+]{4})\s+([\w+]{3})\s+([\w+]{10})\s+([\w+]{2})\s+(\w+)\s+([\d,.]+)\s+(\d+(?::\d{1,2}(?::\d{1,2})?)?)$', linea)
     
     if match:
         # Formato de la información extraída

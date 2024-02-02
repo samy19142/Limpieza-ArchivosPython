@@ -7,18 +7,17 @@ from tkinter import messagebox as MessageBox
 # Función para limpiar y extraer la información
 def procesar_linea(linea):
     # Utiliza expresiones regulares para extraer la información deseada
-    match = re.match(r'^(\d+)\s+(\w+)\s+([\d,.]+)\s+(\d+)\s+(\d+)\s+(\S.*?)\s+(\w+)\s+(\d+(?::\d{1,2}(?::\d{1,2})?)?)\s+([\d+]{3})$', linea)  
-    #match = re.match(r'\b(\d+)\s+(\w+)\s+([\d,.]+)\s+(\d+)\s+(\d+)\s+(\S.*?)\s+(\w+)\s+(\d+:\d+(?::\d{1,2})?)\s+(\d+)\b', linea)
-
+    match = re.match(r'(0|\s)?([\d]{4}-\d+-\d+-\d+)\s+(\d+)\s+(\d+(?::\d{1,2}(?::\d{1,2})?)?)\s+(\d+/\d+/+\d+)\s+([\d,.]+)\s+([\d,.]+)\s+(\d+)\s+([\d]{1})\s+([\w\.\s,]{1,19})', linea)
+    
     if match:
-        # Formato de la información extraída
         resultado = '|'.join(match.groups())
+        
         return resultado
     else:
         return None
 
 def procesar_archivo(archivo_entrada, archivo_salida):
-    cabeceras = ['No Tarjeta', 'Cajero', 'Valor', 'Transaccion', 'Codigo', 'Descripcion', 'Autorizacion', 'Hora','Moneda']
+    cabeceras = ['N/D','No Cuenta', 'Autorizacion', 'Hora', 'Fecha', 'Valor POS', 'Valor Autorizado', 'Secuencia', 'Codigo Estable','Descripcion']
     # Procesar el archivo
     with open(archivo_entrada, 'r', encoding='latin-1') as entrada, open(archivo_salida, 'w', encoding='utf-8') as salida:
         salida.write('|'.join(cabeceras) + '\n')
