@@ -1,5 +1,4 @@
 import re
-import re
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import messagebox as MessageBox
@@ -19,7 +18,7 @@ def procesar_linea(linea):
 def procesar_archivo(archivo_entrada, archivo_salida):
     cabeceras = ['N/D','No Cuenta', 'Autorizacion', 'Hora', 'Fecha', 'Valor POS', 'Valor Autorizado', 'Secuencia', 'Codigo Estable','Descripcion']
     # Procesar el archivo
-    with open(archivo_entrada, 'r', encoding='latin-1') as entrada, open(archivo_salida, 'w', encoding='utf-8') as salida:
+    with open(archivo_entrada, 'r', encoding='utf-8') as entrada, open(archivo_salida, 'w', encoding='utf-8') as salida:
         salida.write('|'.join(cabeceras) + '\n')
         for linea in entrada:
             # Procesar cada línea del archivo
